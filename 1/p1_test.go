@@ -46,11 +46,11 @@ func TestTwoSum(t *testing.T) {
 		},
 	}
 
-	for _, tt := range tests {
+	for _, test := range tests {
 		t.Run("Testing twoSum", func(t *testing.T) {
-			got := TwoSum(tt.nums, tt.target)
-			if !reflect.DeepEqual(got, tt.result) {
-				t.Errorf("twoSum(%v, %d) = %v; want %v", tt.nums, tt.target, got, tt.result)
+			got := TwoSum(test.nums, test.target)
+			if !reflect.DeepEqual(got, test.result) {
+				t.Errorf("twoSum(%v, %d) returned %v; expected %v", test.nums, test.target, got, test.result)
 			}
 		})
 	}
