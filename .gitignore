@@ -23,3 +23,7 @@ go.work.sum
 
 # env file
 .env
+/.idea/vcs.xml
+/.idea/modules.xml
+/.idea/leetcode-solutions.iml
+/.idea/.gitignore
