@@ -14,7 +14,24 @@ type ListNode struct {
 }
 
 func addTwoNumbers(l1 *ListNode, l2 *ListNode) *ListNode {
-	return nil
+	returnNode := new(ListNode)
+	carry := 0 // used for carrying between loops
+
+	for node := returnNode; l1 != nil || l2 != nil || carry != 0; node = node.Next {
+		if l1 != nil {
+			carry += l1.Val
+			l1 = l1.Next
+		}
+		if l2 != nil {
+			carry += l2.Val
+			l2 = l2.Next
+		}
+
+		node.Next = &ListNode{Val: carry % 10}
+		carry /= 10
+	}
+
+	return returnNode.Next
 }
 
 func TestAddTwoNumbers(t *testing.T) {
@@ -59,7 +76,7 @@ func TestAddTwoNumbers(t *testing.T) {
 // Helpers to reduce clutter from setups
 
 func sliceToListNode(nums []int) *ListNode {
-	dummy := &ListNode{}
+	var dummy = &ListNode{}
 	current := dummy
 	for _, num := range nums {
 		current.Next = &ListNode{Val: num}
