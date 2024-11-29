@@ -14,16 +14,7 @@ type ListNode struct {
 }
 
 func addTwoNumbers(l1 *ListNode, l2 *ListNode) *ListNode {
-	return &ListNode{
-		Val: 7,
-		Next: &ListNode{
-			Val: 0,
-			Next: &ListNode{
-				Val:  7,
-				Next: nil,
-			},
-		},
-	}
+	return nil
 }
 
 func TestAddTwoNumbers(t *testing.T) {
@@ -33,36 +24,19 @@ func TestAddTwoNumbers(t *testing.T) {
 		expected  *ListNode
 	}{
 		{
-			listNode1: &ListNode{
-				Val: 2,
-				Next: &ListNode{
-					Val: 4,
-					Next: &ListNode{
-						Val:  3,
-						Next: nil,
-					},
-				},
-			},
-			listNode2: &ListNode{
-				Val: 5,
-				Next: &ListNode{
-					Val: 6,
-					Next: &ListNode{
-						Val:  4,
-						Next: nil,
-					},
-				},
-			},
-			expected: &ListNode{
-				Val: 7,
-				Next: &ListNode{
-					Val: 0,
-					Next: &ListNode{
-						Val:  8,
-						Next: nil,
-					},
-				},
-			},
+			listNode1: sliceToListNode([]int{2, 4, 3}),
+			listNode2: sliceToListNode([]int{5, 6, 4}),
+			expected:  sliceToListNode([]int{7, 0, 8}),
+		},
+		{
+			listNode1: sliceToListNode([]int{0}),
+			listNode2: sliceToListNode([]int{0}),
+			expected:  sliceToListNode([]int{0}),
+		},
+		{
+			listNode1: sliceToListNode([]int{9, 9, 9, 9, 9, 9, 9}),
+			listNode2: sliceToListNode([]int{9, 9, 9, 9}),
+			expected:  sliceToListNode([]int{8, 9, 9, 9, 0, 0, 0, 1}),
 		},
 	}
 
@@ -80,6 +54,18 @@ func TestAddTwoNumbers(t *testing.T) {
 			}
 		})
 	}
+}
+
+// Helpers to reduce clutter from setups
+
+func sliceToListNode(nums []int) *ListNode {
+	dummy := &ListNode{}
+	current := dummy
+	for _, num := range nums {
+		current.Next = &ListNode{Val: num}
+		current = current.Next
+	}
+	return dummy.Next
 }
 
 func listNodeToSlice(node *ListNode) []int {
