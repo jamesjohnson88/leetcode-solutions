@@ -8,11 +8,25 @@ import (
 // https://leetcode.com/problems/longest-substring-without-repeating-characters
 
 func lengthOfLongestSubstring(s string) int {
-	maxLen := 1 // always at least one character
-	// from index, look for maxLen+1, update if found, then repeat
-	// when repeat chars are found, move pointer along
-	// always check that the pointer has enough room to hit a new maxLen
-	// if it can't, we should return early
+	maxLen := 0
+	for i := 0; i < len(s); i++ {
+		maxCount := 0
+		dict := make(map[rune]bool)
+		subIndex := i
+
+		for subIndex < len(s) {
+			if exists := dict[rune(s[subIndex])]; !exists {
+				dict[rune(s[subIndex])] = true
+				maxCount++
+				subIndex++
+				if maxCount > maxLen {
+					maxLen = maxCount
+				}
+			} else {
+				break
+			}
+		}
+	}
 
 	return maxLen
 }
