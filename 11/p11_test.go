@@ -1,4 +1,4 @@
-package _1
+package p11
 
 import (
 	"testing"
