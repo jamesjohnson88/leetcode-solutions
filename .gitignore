@@ -27,3 +27,4 @@ go.work.sum
 /.idea/modules.xml
 /.idea/leetcode-solutions.iml
 /.idea/.gitignore
+/.idea/encodings.xml
