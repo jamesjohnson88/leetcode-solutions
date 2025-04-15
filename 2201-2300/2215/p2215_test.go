@@ -3,6 +3,7 @@ package p2215
 import (
 	"fmt"
 	"reflect"
+	"sort"
 	"testing"
 )
 
@@ -67,6 +68,10 @@ func TestFindDifference(t *testing.T) {
 				if result[i] == nil {
 					result[i] = []int{}
 				}
+
+				// normalize the slices as range usage is non-deterministic
+				sort.Ints(result[i])
+				sort.Ints(test.expected[i])
 			}
 
 			if !reflect.DeepEqual(result, test.expected) {
